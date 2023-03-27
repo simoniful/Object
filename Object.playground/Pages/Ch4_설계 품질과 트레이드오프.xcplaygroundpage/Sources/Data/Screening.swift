@@ -34,4 +34,33 @@ public class Screening {
   public func setWhenScreened(whenScreened: DateComponents) {
     self.whenScreened = whenScreened
   }
+  
+  public func calculateFee(audienceCount: Int) -> Money {
+    switch movie.getMovieType() {
+    case .amount:
+      if movie.isDiscountable(whenScreened: whenScreened, sequence: sequence) {
+        do {
+          return try movie.calculateAmountDiscountedFee().times(percent: Double(audienceCount))
+        } catch {
+          print(error.localizedDescription)
+        }
+      }
+    case .percent:
+      if movie.isDiscountable(whenScreened: whenScreened, sequence: sequence) {
+        do {
+          return try movie.calculatePercentDiscountedFee().times(percent: Double(audienceCount))
+        } catch {
+          print(error.localizedDescription)
+        }
+      }
+    case .none:
+      do {
+        return try movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
+      } catch {
+        print(error.localizedDescription)
+      }
+    }
+    
+    return try! movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
+  }
 }
