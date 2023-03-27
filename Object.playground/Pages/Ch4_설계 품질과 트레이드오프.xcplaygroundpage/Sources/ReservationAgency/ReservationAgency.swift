@@ -1,8 +1,6 @@
 import Foundation
 
 public class ReservationAgency {
-  
-  
   public func reserve(
     screening: Screening,
     customer: Customer,
@@ -12,7 +10,8 @@ public class ReservationAgency {
     var discountable: Bool = false
     
     for condition in movie.getDiscountConditions() {
-      if condition.getType() == .period {
+      switch condition.getType() {
+      case .period:
         let calendar = Calendar.current
         let screeningWhenScreenedDate = calendar.date(from: screening.getWhenScreened())!
         let screeningWhenScreenedWeekday = calendar.component(.weekday, from: screeningWhenScreenedDate)
@@ -24,7 +23,7 @@ public class ReservationAgency {
         let endTimeDate = calendar.date(from: condition.getEndTime())!
         
         discountable = isSameWeekday && screeningWhenScreenedDate.isAvailableTime(from: startTimeDate, to: endTimeDate)
-      } else {
+      case .sequence:
         discountable = condition.getSequence() == screening.getSequence()
       }
       
