@@ -5,6 +5,10 @@ public enum DiscountConditionType {
   case period
 }
 
+public enum DiscountConditionError: Error {
+  case IllegalArgumentException
+}
+
 public class DiscountCondition {
   private var type: DiscountConditionType
   private var sequence: Int
@@ -65,5 +69,28 @@ public class DiscountCondition {
   func setEndTime(endTime: DateComponents) {
     self.endTime = endTime
   }
-}
   
+  func isDiscountable(dayOfWeek: WeekDay, time: DateComponents) throws -> Bool {
+    if type != DiscountConditionType.period {
+      throw DiscountConditionError.IllegalArgumentException
+    }
+    
+    let calendar = Calendar.current
+    
+    let startTimeDate = calendar.date(from: self.startTime)!
+    let endTimeDate = calendar.date(from: self.endTime)!
+    
+    let inputTimeDate = calendar.date(from: time)!
+    
+    return self.dayOfWeek == dayOfWeek && startTimeDate <= inputTimeDate && endTimeDate >= inputTimeDate
+  }
+  
+  func isDiscountable(sequence: Int) throws -> Bool {
+    if type != DiscountConditionType.sequence {
+      throw DiscountConditionError.IllegalArgumentException
+    }
+    
+    return self.sequence == sequence
+  }
+}
+
