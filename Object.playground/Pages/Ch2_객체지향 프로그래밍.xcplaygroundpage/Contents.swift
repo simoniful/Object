@@ -2,6 +2,8 @@
 
 import Foundation
 
+// CH_2. 영화 상영에 대해서 객체 지향적으로 각 클래스의 협력을 구성
+
 let avatarTitle = "아바타"
 let avatarRunningTime = Duration.seconds(120 * 60)
 let avatarFee = Money.wons(amount: 10000)
