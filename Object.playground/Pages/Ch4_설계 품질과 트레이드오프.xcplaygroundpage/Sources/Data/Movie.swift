@@ -66,7 +66,7 @@ public class Movie {
     return discountPercent
   }
   
-  public func getDiscountPercent(discountPercent: Double) {
+  public func setDiscountPercent(discountPercent: Double) {
     self.discountPercent = discountPercent
   }
 }

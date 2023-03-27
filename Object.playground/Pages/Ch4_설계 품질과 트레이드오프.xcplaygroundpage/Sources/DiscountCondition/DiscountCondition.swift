@@ -62,7 +62,7 @@ public class DiscountCondition {
     return endTime
   }
   
-  func getEndTime(endTime: DateComponents) {
+  func setEndTime(endTime: DateComponents) {
     self.endTime = endTime
   }
 }
