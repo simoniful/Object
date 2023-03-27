@@ -69,6 +69,8 @@ public class Movie {
   public func setDiscountPercent(discountPercent: Double) {
     self.discountPercent = discountPercent
   }
+  
+
 }
 
 
