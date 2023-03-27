@@ -70,7 +70,56 @@ public class Movie {
     self.discountPercent = discountPercent
   }
   
-
+  public func calculateAmountDiscountedFee() throws -> Money {
+    if movieType != MovieType.amount {
+      throw MovieSystemError.illegalArgumentException
+    }
+    
+    return fee.minus(amount: discountAmount)
+  }
+  
+  public func calculatePercentDiscountedFee() throws -> Money {
+    if movieType != MovieType.percent {
+      throw MovieSystemError.illegalArgumentException
+    }
+    
+    return fee.minus(amount: fee.times(percent: discountPercent))
+  }
+  
+  public func calculateNoneDiscountedFee() throws -> Money {
+    if movieType != MovieType.none {
+      throw MovieSystemError.illegalArgumentException
+    }
+    
+    return fee
+  }
+  
+  func isDiscountable(whenScreened: DateComponents, sequence: Int) -> Bool {
+    for condition in discountConditions {
+      if condition.getType() == DiscountConditionType.period {
+        do {
+          let calendar = Calendar.current
+          let whenScreenedDate = calendar.date(from: whenScreened)!
+          let whenScreenedWeekday = calendar.component(.weekday, from: whenScreenedDate)
+          
+          if try condition.isDiscountable(dayOfWeek: WeekDay(rawValue: whenScreenedWeekday)!, time: whenScreened) {
+            return true
+          }
+        } catch {
+          print("The movie type is not right.")
+        }
+      } else {
+        do {
+          if try condition.isDiscountable(sequence: sequence) {
+            return true
+          }
+        } catch {
+          print("The movie type is not right.")
+        }
+      }
+    }
+    return false
+  }
 }
 
 

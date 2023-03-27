@@ -68,7 +68,7 @@ public class DiscountCondition {
   
   func isDiscountable(dayOfWeek: WeekDay, time: DateComponents) throws -> Bool {
     if type != DiscountConditionType.period {
-      throw MovieSystemError.IllegalArgumentException
+      throw MovieSystemError.illegalArgumentException
     }
     
     let calendar = Calendar.current
@@ -83,7 +83,7 @@ public class DiscountCondition {
   
   func isDiscountable(sequence: Int) throws -> Bool {
     if type != DiscountConditionType.sequence {
-      throw MovieSystemError.IllegalArgumentException
+      throw MovieSystemError.illegalArgumentException
     }
     
     return self.sequence == sequence
