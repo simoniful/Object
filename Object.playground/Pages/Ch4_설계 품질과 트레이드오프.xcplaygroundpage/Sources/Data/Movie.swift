@@ -32,49 +32,48 @@ public class Movie {
     return movieType
   }
   
-  public func setMovieType(movieType: MovieType) {
-    self.movieType = movieType
-  }
-  
-  public func getFee() -> Money {
-    return fee
-  }
-  
-  public func setFee(fee: Money) {
-    self.fee = fee
-  }
-  
-  public func getDiscountConditions() -> [DiscountCondition] {
-    return discountConditions
-  }
-  
-  public func setDiscountConditions(
-    discountConditions: [DiscountCondition]
-  ) {
-    self.discountConditions = discountConditions
-  }
-  
-  public func getDiscountAmount() -> Money {
-    return discountAmount
-  }
-  
-  public func setDiscountAmount(discountAmount: Money) {
-    self.discountAmount = discountAmount
-  }
-  
-  public func getDiscountPercent() -> Double {
-    return discountPercent
-  }
-  
-  public func setDiscountPercent(discountPercent: Double) {
-    self.discountPercent = discountPercent
-  }
+//  public func setMovieType(movieType: MovieType) {
+//    self.movieType = movieType
+//  }
+//
+//  public func getFee() -> Money {
+//    return fee
+//  }
+//
+//  public func setFee(fee: Money) {
+//    self.fee = fee
+//  }
+//
+//  public func getDiscountConditions() -> [DiscountCondition] {
+//    return discountConditions
+//  }
+//
+//  public func setDiscountConditions(
+//    discountConditions: [DiscountCondition]
+//  ) {
+//    self.discountConditions = discountConditions
+//  }
+//
+//  public func getDiscountAmount() -> Money {
+//    return discountAmount
+//  }
+//
+//  public func setDiscountAmount(discountAmount: Money) {
+//    self.discountAmount = discountAmount
+//  }
+//
+//  public func getDiscountPercent() -> Double {
+//    return discountPercent
+//  }
+//
+//  public func setDiscountPercent(discountPercent: Double) {
+//    self.discountPercent = discountPercent
+//  }
   
   public func calculateAmountDiscountedFee() throws -> Money {
     if movieType != MovieType.amount {
       throw MovieSystemError.illegalArgumentException
     }
-    
     return fee.minus(amount: discountAmount)
   }
   
@@ -82,7 +81,6 @@ public class Movie {
     if movieType != MovieType.percent {
       throw MovieSystemError.illegalArgumentException
     }
-    
     return fee.minus(amount: fee.times(percent: discountPercent))
   }
   
@@ -90,11 +88,10 @@ public class Movie {
     if movieType != MovieType.none {
       throw MovieSystemError.illegalArgumentException
     }
-    
     return fee
   }
   
-  func isDiscountable(whenScreened: DateComponents, sequence: Int) -> Bool {
+  public func isDiscountable(whenScreened: DateComponents, sequence: Int) -> Bool {
     for condition in discountConditions {
       if condition.getType() == DiscountConditionType.period {
         do {
