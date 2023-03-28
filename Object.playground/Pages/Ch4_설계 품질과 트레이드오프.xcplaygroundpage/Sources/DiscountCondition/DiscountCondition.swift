@@ -26,47 +26,47 @@ public class DiscountCondition {
     self.endTime = endTime
   }
   
-  func getType() -> DiscountConditionType {
+  public func getType() -> DiscountConditionType {
     return type
   }
   
-  func setType(type: DiscountConditionType) {
-    self.type = type
-  }
+//  func setType(type: DiscountConditionType) {
+//    self.type = type
+//  }
+//
+//  func getSequence() -> Int {
+//    return sequence
+//  }
+//
+//  func setSequence(sequence: Int) {
+//    self.sequence = sequence
+//  }
+//
+//  func getDayOfWeek() -> WeekDay {
+//    return dayOfWeek
+//  }
+//
+//  func setDayOfWeek(dayOfWeek: WeekDay) {
+//    self.dayOfWeek = dayOfWeek
+//  }
+//
+//  func getStartTime() -> DateComponents {
+//    return startTime
+//  }
+//
+//  func setStartTime(startTime: DateComponents) {
+//    self.startTime = startTime
+//  }
+//
+//  func getEndTime() -> DateComponents {
+//    return endTime
+//  }
+//
+//  func setEndTime(endTime: DateComponents) {
+//    self.endTime = endTime
+//  }
   
-  func getSequence() -> Int {
-    return sequence
-  }
-  
-  func setSequence(sequence: Int) {
-    self.sequence = sequence
-  }
-  
-  func getDayOfWeek() -> WeekDay {
-    return dayOfWeek
-  }
-  
-  func setDayOfWeek(dayOfWeek: WeekDay) {
-    self.dayOfWeek = dayOfWeek
-  }
-  
-  func getStartTime() -> DateComponents {
-    return startTime
-  }
-  
-  func setStartTime(startTime: DateComponents) {
-    self.startTime = startTime
-  }
-  
-  func getEndTime() -> DateComponents {
-    return endTime
-  }
-  
-  func setEndTime(endTime: DateComponents) {
-    self.endTime = endTime
-  }
-  
-  func isDiscountable(dayOfWeek: WeekDay, time: DateComponents) throws -> Bool {
+  public func isDiscountable(dayOfWeek: WeekDay, time: DateComponents) throws -> Bool {
     if type != DiscountConditionType.period {
       throw MovieSystemError.illegalArgumentException
     }
@@ -81,7 +81,7 @@ public class DiscountCondition {
     return self.dayOfWeek == dayOfWeek && startTimeDate <= inputTimeDate && endTimeDate >= inputTimeDate
   }
   
-  func isDiscountable(sequence: Int) throws -> Bool {
+  public func isDiscountable(sequence: Int) throws -> Bool {
     if type != DiscountConditionType.sequence {
       throw MovieSystemError.illegalArgumentException
     }
