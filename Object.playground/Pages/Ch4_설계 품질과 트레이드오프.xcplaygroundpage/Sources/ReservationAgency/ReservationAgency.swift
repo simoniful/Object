@@ -1,6 +1,8 @@
 import Foundation
 
 public class ReservationAgency {
+  public init() {}
+  
 //  public func reserve(
 //    screening: Screening,
 //    customer: Customer,
@@ -52,7 +54,7 @@ public class ReservationAgency {
 //    return Reservation(customer: customer, screening: screening, fee: fee, audienceCount: audienceCount)
 //  }
   
-  func reserve(screening: Screening, customer: Customer, audienceCount: Int) -> Reservation {
+  public func reserve(screening: Screening, customer: Customer, audienceCount: Int) -> Reservation {
     let fee = screening.calculateFee(audienceCount: audienceCount)
     return Reservation(customer: customer, screening: screening, fee: fee, audienceCount: audienceCount)
   }

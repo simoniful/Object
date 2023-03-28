@@ -11,29 +11,29 @@ public class Screening {
     self.whenScreened = whenScreened
   }
   
-  public func getMovie() -> Movie {
-    return movie
-  }
-  
-  public func setMovie(movie: Movie) {
-    self.movie = movie
-  }
-  
-  public func getSequence() -> Int {
-    return sequence
-  }
-  
-  public func setSequence(sequence: Int) {
-    self.sequence = sequence
-  }
-  
-  public func getWhenScreened() -> DateComponents {
-    return whenScreened
-  }
-  
-  public func setWhenScreened(whenScreened: DateComponents) {
-    self.whenScreened = whenScreened
-  }
+//  public func getMovie() -> Movie {
+//    return movie
+//  }
+//  
+//  public func setMovie(movie: Movie) {
+//    self.movie = movie
+//  }
+//  
+//  public func getSequence() -> Int {
+//    return sequence
+//  }
+//  
+//  public func setSequence(sequence: Int) {
+//    self.sequence = sequence
+//  }
+//  
+//  public func getWhenScreened() -> DateComponents {
+//    return whenScreened
+//  }
+//  
+//  public func setWhenScreened(whenScreened: DateComponents) {
+//    self.whenScreened = whenScreened
+//  }
   
   public func calculateFee(audienceCount: Int) -> Money {
     switch movie.getMovieType() {
@@ -54,13 +54,9 @@ public class Screening {
         }
       }
     case .none:
-      do {
-        return try movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
-      } catch {
-        print(error.localizedDescription)
-      }
+      return movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
     }
     
-    return try! movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
+    return movie.calculateNoneDiscountedFee().times(percent: Double(audienceCount))
   }
 }

@@ -52,7 +52,7 @@ avatar.changeDiscountPolicy(
 
 Screening(
   movie: avatar,
-  sequence: 2,
+  sequence: 1,
   whenScreened: DateComponents(hour: 10, minute: 0, weekday: 1)
 )
 .reserve(

@@ -84,10 +84,7 @@ public class Movie {
     return fee.minus(amount: fee.times(percent: discountPercent))
   }
   
-  public func calculateNoneDiscountedFee() throws -> Money {
-    if movieType != MovieType.none {
-      throw MovieSystemError.illegalArgumentException
-    }
+  public func calculateNoneDiscountedFee() -> Money {
     return fee
   }
   

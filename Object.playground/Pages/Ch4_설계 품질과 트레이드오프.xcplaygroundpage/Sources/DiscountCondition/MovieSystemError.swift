@@ -1,5 +1,5 @@
 import Foundation
 
-enum MovieSystemError: Error {
-    case illegalArgumentException
+public enum MovieSystemError: Error {
+  case illegalArgumentException
 }
