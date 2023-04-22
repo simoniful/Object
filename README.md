@@ -8,3 +8,4 @@
 + [Ch 2. 객체지향 프로그래밍](https://github.com/simoniful/Object/issues/3)
 + [Ch 3. 역할, 책임, 협력](https://github.com/simoniful/Object/issues/5)
 + [Ch 4. 설계 품질과 트레이드오프](https://github.com/simoniful/Object/issues/6)
++ [Ch 5. 책임 할당하기](https://github.com/simoniful/Object/issues/7)
